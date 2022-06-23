@@ -4,6 +4,9 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
+import com.g.openglstudy.R;
+import com.g.openglstudy.util.TextResourceReader;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -24,6 +27,10 @@ public class HockeyRender implements GLSurfaceView.Renderer {
     private static final int BYTES_PER_FLOAT = 4;
     //FloatBuffer 类型的顶点数据
     private  FloatBuffer vertexData;
+    //顶点着色器代码
+    private String vertexShaderSource;
+    //片源着色器代码
+    private String fragmentShaderSource;
 
     //坐标数组
     float[] tableVerticesWithTriangles = {
@@ -38,6 +45,10 @@ public class HockeyRender implements GLSurfaceView.Renderer {
     };
 
     public HockeyRender(Context context) {
+        //读取顶点着色器信息
+        vertexShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_vertex_shader);
+        //读取片源着色器信息
+        fragmentShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_fragment_shader);
 
         vertexData = ByteBuffer
                 //分配本地内存  不受jvm控制  属于系统级
@@ -48,6 +59,8 @@ public class HockeyRender implements GLSurfaceView.Renderer {
                 .asFloatBuffer();
         //将给定源浮点数组的全部内容传输到缓冲区
         vertexData.put(tableVerticesWithTriangles);
+
+
     }
 
     @Override
