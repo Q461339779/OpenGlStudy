@@ -2,9 +2,17 @@ package com.g.openglstudy.util;
 
 import android.opengl.GLES20;
 
+import static android.opengl.GLES20.GL_COMPILE_STATUS;
 import static android.opengl.GLES20.GL_FRAGMENT_SHADER;
+import static android.opengl.GLES20.GL_LINK_STATUS;
 import static android.opengl.GLES20.GL_VERTEX_SHADER;
+import static android.opengl.GLES20.glAttachShader;
+import static android.opengl.GLES20.glCreateProgram;
 import static android.opengl.GLES20.glCreateShader;
+import static android.opengl.GLES20.glDeleteProgram;
+import static android.opengl.GLES20.glDeleteShader;
+import static android.opengl.GLES20.glGetProgramiv;
+import static android.opengl.GLES20.glLinkProgram;
 
 /**
  * 着色器帮助类
@@ -48,7 +56,39 @@ public class ShaderHelper {
         GLES20.glShaderSource(shaderObjectId,shaderCode);
         //编译着色器
         GLES20.glCompileShader(shaderObjectId);
+        //检查着色器是否编译成功 0是编译失败 1是成功
+        final int[] compileStatus = new int[1];
+        GLES20.glGetShaderiv(shaderObjectId,GL_COMPILE_STATUS,compileStatus,0);
+        //编译失败 着色器没用 删除着色器
+        if (compileStatus[0] == 0){
+            glDeleteShader(shaderObjectId);
+            return 0;
+        }
+        return shaderObjectId;
 
-        return 0;
+    }
+
+
+    //将顶点着色器和片源着色器链接到一起
+    public static int linkProgram(int vertexShaderId, int fragmentShaderId){
+        //创建着色器程序
+        final int programObjectId = glCreateProgram();
+        if (programObjectId ==0){
+            return 0;
+        }
+        //添加顶点着色器到着色器程序
+        glAttachShader(programObjectId,vertexShaderId);
+        //添加片源着色器到着色器程序
+        glAttachShader(programObjectId,fragmentShaderId);
+        //将顶点着色器和片源着色器链接到一起
+        glLinkProgram(programObjectId);
+        //验证链接状态
+        final int[] linkStatus = new int[1];
+        glGetProgramiv(programObjectId, GL_LINK_STATUS, linkStatus, 0);
+        if (linkStatus[0] ==0){
+            glDeleteProgram(programObjectId);
+            return 0;
+        }
+        return programObjectId;
     }
 }
