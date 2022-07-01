@@ -6,8 +6,16 @@
 
 // attribute 顶点数据传入到着色器 用于经常更改的信息，只能在顶点着色器中使用；
 attribute vec4 a_Position;
+
+attribute vec4 a_Color;
+
+varying vec4 v_Color;
 //着色器入口
 void main(){
+
+    v_Color = a_Color;
     // 将传进来的 a_Position 赋值到 gl_Position
     gl_Position = a_Position;
+    gl_PointSize = 10.0; //指定点的大小为10.0
+
 }
