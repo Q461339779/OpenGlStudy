@@ -1,10 +1,11 @@
 package com.g.openglstudy;
 
+import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class IsoscelesTriangleActivity extends AppCompatActivity {
+public class IsoscelesTriangleActivity extends Activity {
 
     private GLSurfaceView glSurfaceView;
 

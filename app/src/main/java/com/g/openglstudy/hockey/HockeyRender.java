@@ -138,7 +138,7 @@ public class HockeyRender implements GLSurfaceView.Renderer {
         int programId = ShaderHelper.buildProgram(vertexShaderSource, fragmentShaderSource);
         GLES20.glUseProgram(programId);
         //获取位置
-        uColorLocation = GLES20.glGetUniformLocation(programId, U_COLOR);
+        //uColorLocation = GLES20.glGetUniformLocation(programId, U_COLOR);
         aPositionLocation = GLES20.glGetAttribLocation(programId, A_POSITION);
         vertexData.position(0);
         //告诉OpenGL到哪里找到属性a_Position对应的数据
@@ -148,7 +148,7 @@ public class HockeyRender implements GLSurfaceView.Renderer {
         GLES20.glEnableVertexAttribArray(aPositionLocation);
 
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        int programId = ShaderHelper.buildProgram(vertexShaderSource, fragmentShaderSource);
+        //int programId = ShaderHelper.buildProgram(vertexShaderSource, fragmentShaderSource);
         GLES20.glUseProgram(programId);
         // uColorLocation = GLES20.glGetUniformLocation(programId, U_COLOR);
         aPositionLocation = GLES20.glGetAttribLocation(programId, A_POSITION);
@@ -190,17 +190,17 @@ public class HockeyRender implements GLSurfaceView.Renderer {
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);*/
 
         //绘制扇形
-        GLES20.glUniform4f(uColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, 6);
-
-        GLES20.glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
-        GLES20.glDrawArrays(GLES20.GL_LINES, 6, 2);
-
-        GLES20.glUniform4f(uColorLocation, 0.0f, 0.0f, 1.0f, 1.0f);
-        GLES20.glDrawArrays(GLES20.GL_POINTS, 8, 1);
-
-        GLES20.glUniform4f(uColorLocation, 0.0f, 1.0f, 0.0f, 1.0f);
-        GLES20.glDrawArrays(GLES20.GL_POINTS, 9, 1);
+//        GLES20.glUniform4f(uColorLocation, 1.0f, 1.0f, 1.0f, 1.0f);
+//        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, 6);
+//
+//        GLES20.glUniform4f(uColorLocation, 1.0f, 0.0f, 0.0f, 1.0f);
+//        GLES20.glDrawArrays(GLES20.GL_LINES, 6, 2);
+//
+//        GLES20.glUniform4f(uColorLocation, 0.0f, 0.0f, 1.0f, 1.0f);
+//        GLES20.glDrawArrays(GLES20.GL_POINTS, 8, 1);
+//
+//        GLES20.glUniform4f(uColorLocation, 0.0f, 1.0f, 0.0f, 1.0f);
+//        GLES20.glDrawArrays(GLES20.GL_POINTS, 9, 1);
 
 
     }

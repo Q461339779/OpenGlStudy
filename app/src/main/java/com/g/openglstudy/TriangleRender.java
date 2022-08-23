@@ -57,6 +57,10 @@ public class TriangleRender implements GLSurfaceView.Renderer {
     //设置颜色，依次为红绿蓝和透明通道
     float color[] = {1.0f, 1.0f, 1.0f, 1.0f};
 
+    /**
+     *初始化自己数组
+     * @param context
+     */
     public TriangleRender(Context context) {
         this.context = context;
 
@@ -67,13 +71,14 @@ public class TriangleRender implements GLSurfaceView.Renderer {
         byteBuffer.order(ByteOrder.nativeOrder());
         //创建Float型缓冲区
         vertexBuffer = byteBuffer.asFloatBuffer();
+        //将顶点数据放入buffer中
         vertexBuffer.put(triangleCoords);
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-        //设置缓冲位置
+        //设置缓冲位置起始位置
         vertexBuffer.position(0);
         int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER,
                 vertexShaderCode);
@@ -123,7 +128,6 @@ public class TriangleRender implements GLSurfaceView.Renderer {
         //根据type创建顶点着色器或者片元着色器
         int shader = GLES20.glCreateShader(type);
         //将资源加入到着色器中，并编译
-
         //要被替换源代码的着色器对象的句柄（ID）。
         //shaderCode指定指向包含要加载到着色器的源代码的字符串的指针数组。
         GLES20.glShaderSource(shader, shaderCode);

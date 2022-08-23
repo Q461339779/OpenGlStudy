@@ -1,15 +1,16 @@
 package com.g.openglstudy.hockey;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class HockeyActivity extends AppCompatActivity {
+public class HockeyActivity extends Activity {
 
     private GLSurfaceView glSurfaceView;
     private HockeyRender hockeyRender;

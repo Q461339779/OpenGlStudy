@@ -1,18 +1,23 @@
 package com.g.openglstudy;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ConfigurationInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.g.openglstudy.camera.CameraActivity;
+import com.g.openglstudy.model.LoadModelActivity;
+
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener {
     private RecyclerView mList;
     private ArrayList<MenuBean> data;
     @Override
@@ -24,8 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mList= (RecyclerView)findViewById(R.id.mList);
         mList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         data=new ArrayList<>();
-        add("绘制三角形", TriangleActivity.class);
-        add("绘制等腰三角形", IsoscelesTriangleActivity.class);
+        add("OpenGL绘制三角形", TriangleActivity.class);
+        add("OpenGL绘制等腰三角形", IsoscelesTriangleActivity.class);
+        add("OpenGL滤镜相机", CameraActivity.class);
+        add("OpenGL加载静态模型", LoadModelActivity.class);
+
         mList.setAdapter(new MenuAdapter());
 
     }

@@ -1,5 +1,6 @@
 package com.g.openglstudy;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
@@ -10,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * 直角三角形
  */
-public class TriangleActivity extends AppCompatActivity {
+public class TriangleActivity extends Activity {
 
     private GLSurfaceView glSurfaceView;
 
