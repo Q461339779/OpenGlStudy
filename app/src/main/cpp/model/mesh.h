@@ -25,14 +25,14 @@ struct Vertex {
     glm::vec3 Normal;
     // texCoords 纹理坐标
     glm::vec2 TexCoords;
-    // tangent
+    // tangent 切线坐标
     glm::vec3 Tangent;
-    // bitangent
+    // bitangent 双切线
     glm::vec3 Bitangent;
 
     //bone indexes which will influence this vertex
     int m_BoneIDs[MAX_BONE_INFLUENCE];
-    //weights from each bone
+    //weights from each bone 骨骼的重量
     float m_Weights[MAX_BONE_INFLUENCE];
 };
 /**

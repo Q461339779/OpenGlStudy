@@ -89,7 +89,7 @@ public class LoadModelActivity extends Activity implements AudioCollector.Callba
         modelGLSurfaceView = new ModelGLSurfaceView(this, modelMyGLRender);
         mRootView.addView(modelGLSurfaceView, 0, lp);
         modelGLSurfaceView.setRenderMode(RENDERMODE_CONTINUOUSLY);
-        modelMyGLRender.setParamsInt(SAMPLE_TYPE, SAMPLE_TYPE_3D_MODEL_ANIM, 0);
+        //modelMyGLRender.setParamsInt(SAMPLE_TYPE, SAMPLE_TYPE_3D_MODEL, 0);
     }
 
     @Override
