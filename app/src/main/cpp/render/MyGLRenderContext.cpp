@@ -8,13 +8,18 @@
 
 MyGLRenderContext* MyGLRenderContext::m_pContext = nullptr;
 
+/**
+ * 构造函数
+ */
 MyGLRenderContext::MyGLRenderContext()
 {
 	m_pCurSample = new Model3DSample();
 	m_pBeforeSample = nullptr;
 
 }
-
+/**
+ * 析构函数
+ */
 MyGLRenderContext::~MyGLRenderContext()
 {
 	if (m_pCurSample)
@@ -204,7 +209,10 @@ void MyGLRenderContext::OnDrawFrame()
 		m_pCurSample->Draw(m_ScreenW, m_ScreenH);
 	}
 }
-//初始化OpenGLcontext
+/**
+ *
+ * @return
+ */
 MyGLRenderContext *MyGLRenderContext::GetInstance()
 {
 	if (m_pContext == nullptr)

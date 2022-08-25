@@ -97,7 +97,7 @@ void Model3DSample::Init()
             "    vec3 finalColor = (ambient + diffuse + specular) * vec3(objectColor);\n"
             "    outColor = vec4(finalColor, 1.0);\n"
             "}";
-    //app层已把model文件夹拷贝到 /sdcard/Android/data/com.chenxf.opengles/files/Download 路径下，所以这里可以加载模型
+    //app层已把model文件夹拷贝到 /sdcard/Android/data/com.g.openglstudy/files/Download 路径下，所以这里可以加载模型
 	std::string path(DEFAULT_OGL_ASSETS_DIR);
 
     DEBUG_LOGCATE();
