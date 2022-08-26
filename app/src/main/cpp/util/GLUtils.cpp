@@ -41,8 +41,10 @@ GLuint GLUtils::CreateProgram(const char *pVertexShaderSource, const char *pFrag
 {
     GLuint program = 0;
     FUN_BEGIN_TIME("GLUtils::CreateProgram")
+        //创建顶点着色器
         vertexShaderHandle = LoadShader(GL_VERTEX_SHADER, pVertexShaderSource);
         if (!vertexShaderHandle) return program;
+        //创建片源着色器
         fragShaderHandle = LoadShader(GL_FRAGMENT_SHADER, pFragShaderSource);
         if (!fragShaderHandle) return program;
 

@@ -61,7 +61,7 @@ void TriangleSample::Draw(int screenW, int screenH)
 	// Use the program object
 	glUseProgram (m_ProgramObj);
 
-	// Load the vertex data
+	// Load the vertex data 加载顶点数据
 	glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, vVertices );
 	glEnableVertexAttribArray (0);
 

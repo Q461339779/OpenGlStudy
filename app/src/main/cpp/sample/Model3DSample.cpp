@@ -107,7 +107,7 @@ void Model3DSample::Init()
 //    m_pModel = new Model(path + "/model/test/test.glb");
 
     DEBUG_LOGCATE();
-
+    //相当于m_pModel.ContainsTextures()
     if (m_pModel->ContainsTextures())
     {
         DEBUG_LOGCATE();
