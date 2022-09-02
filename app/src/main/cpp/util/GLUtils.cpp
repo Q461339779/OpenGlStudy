@@ -7,8 +7,10 @@
 GLuint GLUtils::LoadShader(GLenum shaderType, const char *pSource)
 {
     GLuint shader = 0;
+
 	FUN_BEGIN_TIME("GLUtils::LoadShader")
         shader = glCreateShader(shaderType);
+        //LOGCATE("GLUtils::LoadShader 测试相关日志 %p:\n%d\n", &pSource, sh);
         if (shader)
         {
             glShaderSource(shader, 1, &pSource, NULL);

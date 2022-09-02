@@ -24,7 +24,8 @@ using namespace std;
 class Model 
 {
 public:
-    /*  Model Data */
+    /* 模型数据 Model Data */
+    //将所有加载过的纹理储存在vector中
     vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
     vector<Mesh> meshes;
     string directory;
@@ -41,6 +42,7 @@ public:
         loadModel(path);
     }
 
+    // 绘制模型 和所有网格
     // draws the model, and thus all its meshes
     void Draw(Shader shader)
     {
@@ -104,17 +106,22 @@ private:
     // processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
     void processNode(aiNode *node, const aiScene *scene)
     {
+        // 处理当前节点的每个网格
         // process each mesh located at the current node
+        //i 是节点的网格数
         for(unsigned int i = 0; i < node->mNumMeshes; i++)
         {
             // the node object only contains indices to index the actual objects in the scene. 
             // the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
+            //节点的网格是场景的网格
             aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
             if(mesh != nullptr)
+                //把网格传入 scene
                 meshes.push_back(processMesh(mesh, scene));
         }
         DEBUG_LOGCATE();
         // after we've processed all of the meshes (if any) we then recursively process each of the children nodes
+        //对子节点重复过程
         for(unsigned int i = 0; i < node->mNumChildren; i++)
         {
             processNode(node->mChildren[i], scene);
@@ -136,9 +143,11 @@ private:
     Mesh processMesh(aiMesh *mesh, const aiScene *scene)
     {
         // data to fill
+        // 数据填充
         vector<Vertex> vertices;
         vector<unsigned int> indices;
         vector<Texture> textures;
+        // 处理顶点位置 法线和纹理坐标
         // Walk through each of the mesh's vertices
         for(unsigned int i = 0; i < mesh->mNumVertices; i++)
         {
@@ -180,6 +189,7 @@ private:
             vertex.Bitangent = vector;
             vertices.push_back(vertex);
         }
+        // 处理索引 (绘制那个顶点 以什么顺序绘制)
         // now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
         for(unsigned int i = 0; i < mesh->mNumFaces; i++)
         {
@@ -188,6 +198,7 @@ private:
             for(unsigned int j = 0; j < face.mNumIndices; j++)
                 indices.push_back(face.mIndices[j]);
         }
+        // 处理材质(贴图)
         // process materials
         aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];    
         // we assume a convention for sampler names in the shaders. Each diffuse texture should be named
@@ -210,6 +221,7 @@ private:
         std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
         textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
         
+        // 输出三个载体
         // return a mesh object created from the extracted mesh data
         return Mesh(vertices, indices, textures);
     }
